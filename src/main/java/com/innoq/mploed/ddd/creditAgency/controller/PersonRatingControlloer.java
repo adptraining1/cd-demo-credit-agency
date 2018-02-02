@@ -1,5 +1,7 @@
 package com.innoq.mploed.ddd.creditAgency.controller;
 
+import com.codahale.metrics.Meter;
+import com.codahale.metrics.MetricRegistry;
 import com.innoq.mploed.ddd.creditAgency.RatingService;
 import com.innoq.mploed.ddd.creditAgency.domain.Rating;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class PersonRatingControlloer {
     private RatingService ratingService;
 
+    private Meter scoringMeter;
+
+
     @Autowired
-    public PersonRatingControlloer(RatingService ratingService) {
+    public PersonRatingControlloer(RatingService ratingService, MetricRegistry metricRegistry) {
         this.ratingService = ratingService;
+        this.scoringMeter = metricRegistry.meter("scorings");
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/personRating")
@@ -24,7 +30,9 @@ public class PersonRatingControlloer {
             @RequestParam(value = "street", defaultValue = "") String street,
             @RequestParam(value = "postCode", defaultValue = "") String postCode
     ) {
-        return ratingService.getRating(street, postCode);
+        Rating rating = ratingService.getRating(street, postCode);
+        this.scoringMeter.mark();
+        return rating;
 
     }
 

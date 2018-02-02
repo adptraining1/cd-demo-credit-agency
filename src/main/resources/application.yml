@@ -3,4 +3,6 @@ server:
 management:
   info:
     git:
-      mode: full			
+      mode: full
+  security:
+    enabled: false

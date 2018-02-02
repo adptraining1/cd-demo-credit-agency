@@ -9,12 +9,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class RatingService {
 
-    private Meter scoringMeter;
-
-    @Autowired
-    public RatingService(MetricRegistry metricRegistry) {
-        this.scoringMeter = metricRegistry.meter("scorings");
-    }
 
     public Rating getRating(String street, String postCode) {
         int points = 0;
@@ -44,7 +38,6 @@ public class RatingService {
             rating.setColor("BLACK");
         }
 
-        scoringMeter.mark();
         return rating;
     }
 }
