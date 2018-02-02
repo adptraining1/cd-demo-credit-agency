@@ -1,11 +1,21 @@
 package com.innoq.mploed.ddd.creditAgency;
 
+import com.codahale.metrics.Meter;
+import com.codahale.metrics.MetricRegistry;
 import com.innoq.mploed.ddd.creditAgency.domain.Rating;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
 public class RatingService {
+
+    private Meter scoringMeter;
+
+    @Autowired
+    public RatingService(MetricRegistry metricRegistry) {
+        this.scoringMeter = metricRegistry.meter("scorings");
+    }
+
     public Rating getRating(String street, String postCode) {
         int points = 0;
 
@@ -34,7 +44,7 @@ public class RatingService {
             rating.setColor("BLACK");
         }
 
-
+        scoringMeter.mark();
         return rating;
     }
 }
