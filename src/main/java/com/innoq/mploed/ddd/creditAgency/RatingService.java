@@ -17,9 +17,21 @@ public class RatingService {
 
         if(postCode.startsWith("8")) {
             points += 110;
-        } else if(postCode.startsWith("90")) {
+        } else if(postCode.startsWith("9")) {
             points += 115;
-        } else if(postCode.startsWith("40")) {
+        } else if(postCode.startsWith("0")) {
+            points += 15;
+        } else if(postCode.startsWith("1")) {
+            points += 15;
+        } else if(postCode.startsWith("2")) {
+            points += 39;
+        } else if(postCode.startsWith("5")) {
+            points += 40;
+        } else if(postCode.startsWith("6")) {
+            points += 19;
+        } else if(postCode.startsWith("7")) {
+            points += 50;
+        } else if(postCode.startsWith("4")) {
             points += 15;
         }
 
@@ -28,11 +40,11 @@ public class RatingService {
         }
 
         rating.setPoints(points);
-        if(points == 20) {
+        if(points <= 20) {
             rating.setColor("RED");
-        } else if(points == 100) {
+        } else if(points <= 40) {
             rating.setColor("YELLOW");
-        } else if(points > 100){
+        } else if(points > 40){
             rating.setColor("GREEN");
         } else {
             rating.setColor("BLACK");
