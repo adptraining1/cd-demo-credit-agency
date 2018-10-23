@@ -17,4 +17,11 @@ public class RatingServiceTest {
         Rating rating = ratingService.getRating("Whatever", "90429");
         assertEquals(115, rating.getPoints());
     }
+
+    @Test
+    public void testStuttgartScore() {
+        RatingService ratingService = new RatingService();
+        Rating rating = ratingService.getRating("Whatever", "70178");
+        assertEquals(50, rating.getPoints());
+    }
 }
