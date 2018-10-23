@@ -18,3 +18,4 @@ target/*
 
 # embedded database files
 *.rdb
+/.idea/*
