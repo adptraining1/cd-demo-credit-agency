@@ -1,3 +1,3 @@
 # cd-demo-credit-agency
 
-credit agency project
+credit agency project - multibranch demo
