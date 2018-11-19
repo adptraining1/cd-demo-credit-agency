@@ -32,7 +32,7 @@ public class RatingService {
         } else if(postCode.startsWith("7")) {
             points += 50;
         } else if(postCode.startsWith("4")) {
-            points += 15;
+            points += 16;
         }
 
         if(street.contains("Kreuz")) {
