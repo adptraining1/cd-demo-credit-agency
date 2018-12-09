@@ -45,13 +45,15 @@ pipeline {
             }
         }
         stage('Deploy to Dev') {
-            steps {
-                pushToCloudFoundry(
-                  target: 'api.run.pivotal.io',
-                  organization: 'michael.ploed-org',
-                  cloudSpace: 'development',
-                  credentialsId: '3c8d45c3-9168-46c0-ac8d-fad8eefa8f8c'
-                )
+            node {
+                steps {
+                    pushToCloudFoundry(
+                      target: 'api.run.pivotal.io',
+                      organization: 'michael.ploed-org',
+                      cloudSpace: 'development',
+                      credentialsId: '3c8d45c3-9168-46c0-ac8d-fad8eefa8f8c'
+                    )
+                }
             }
 
         }
