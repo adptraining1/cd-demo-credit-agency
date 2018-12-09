@@ -46,7 +46,7 @@ pipeline {
         }
         stage('Deploy to Dev') {
             agent {
-                docker { image 'governmentpaas:cf-cli' }
+                docker { image 'governmentpaas/cf-cli:latest' }
             }
             steps {
                 withCredentials([usernamePassword(credentialsId: '3c8d45c3-9168-46c0-ac8d-fad8eefa8f8c', passwordVariable: 'CF_PASS', usernameVariable: 'CF_USER')]) {
