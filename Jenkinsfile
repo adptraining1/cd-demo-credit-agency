@@ -49,7 +49,7 @@ pipeline {
                 input "Deploy to Production?"
             }
         }
-        stage('Deploy to Dev') {
+        stage('Deploy to Production') {
                 agent {
                     docker {
                         image 'maven:3-alpine'
