@@ -46,7 +46,7 @@ pipeline {
         }
         stage('Deploy approval'){
             steps {
-                input "Deploy to dev?"
+                input "Deploy to Production?"
             }
         }
         stage('Deploy to Dev') {
@@ -60,7 +60,7 @@ pipeline {
                     pushToCloudFoundry(
                       target: 'api.run.pivotal.io',
                       organization: 'michael.ploed-org',
-                      cloudSpace: 'development',
+                      cloudSpace: 'production',
                       credentialsId: '3c8d45c3-9168-46c0-ac8d-fad8eefa8f8c'
                     )
                 }
