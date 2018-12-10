@@ -45,7 +45,9 @@ pipeline {
             }
         }
         stage('Deploy approval'){
-            input "Deploy to dev?"
+            steps {
+                input "Deploy to dev?"
+            }
         }
         stage('Deploy to Dev') {
                 agent {
